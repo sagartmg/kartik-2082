@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My  Website - HTML</title>
+</head>
+<body>
+    <header>
+        <h1>Welcome to My  Website</h1>
+        <nav>
+            <ul>
+                <li><a href="#about">About Me</a></li>
+                <li><a href="#schedule">Learning Path</a></li>
+                <li><a href="#hobbies">Hobbies</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="about">
+            <h2>About Me</h2>
+            <img src="https://placehold.co/400" alt="Profile Picture" width="300" height="200">
+            <p>Hello! My name is <strong>John Doe</strong> and I am a <em>student</em> learning HTML.</p>
+            <p>I am passionate about <u>web development</u> and excited to create my first website!</p>
+            <p>My favorite programming languages include:</p>
+            <ul>
+                <li>HTML/CSS</li>
+                <li>JavaScript</li>
+                <li>python</li>
+            </ul>
+        </section>
+
+        <section id="schedule">
+            <h2>Programming Skills I Would Like to Learn</h2>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Week</th>
+                        <th>Topic</th>
+                        <th>Technology</th>
+                        <th>Difficulty</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Week 1</td>
+                        <td>Web Basics</td>
+                        <td>HTML & CSS</td>
+                        <td>Beginner</td>
+                    </tr>
+                    <tr>
+                        <td>Week 2</td>
+                        <td>Interactivity</td>
+                        <td>JavaScript</td>
+                        <td>Intermediate</td>
+                    </tr>
+                    <tr>
+                        <td>Week 3</td>
+                        <td>Backend Development</td>
+                        <td>Node</td>
+                        <td>Intermediate</td>
+                    </tr>
+                    <tr>
+                        <td>Week 4</td>
+                        <td>Database Management</td>
+                        <td>SQL</td>
+                        <td>Intermediate</td>
+                    </tr>
+                    <tr>
+                        <td>Week 5</td>
+                        <td>Modern Frameworks</td>
+                        <td>React</td>
+                        <td>Advanced</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="hobbies">
+            <h2>My Hobbies and Interests</h2>
+            <article>
+                <h3>Top 5 Favorite Movies</h3>
+                <ol>
+                    <li>The Shawshank Redemption</li>
+                    <li>Inception</li>
+                    <li>The Dark Knight</li>
+                    <li>Interstellar</li>
+                    <li>The Matrix</li>
+                </ol>
+            </article>
+
+            <article>
+                <h3>My Favorite Websites</h3>
+                <p>Here are some websites I visit regularly:</p>
+                <ul>
+                    <li><a href="https://www.wikipedia.org" target="_blank">Wikipedia</a> - For learning</li>
+                    <li><a href="https://www.github.com" target="_blank">GitHub</a> - For coding projects</li>
+                    <li><a href="https://www.youtube.com" target="_blank">YouTube</a> - For tutorials</li>
+                </ul>
+            </article>
+        </section>
+
+        <section id="contact">
+            <h2>Contact Me</h2>
+            <form>
+                <h3>Personal Information</h3>
+                
+                <label for="name">Full Name:</label><br>
+                <input type="text" id="name" name="name" required><br><br>
+
+                <label for="email">Email Address:</label><br>
+                <input type="email" id="email" name="email" required><br><br>
+
+                <label for="age">Age:</label><br>
+                <input type="number" id="age" name="age" min="5" max="100"><br><br>
+
+                <h3>Additional Details</h3>
+                
+                <label>Gender:</label><br>
+                <input type="radio" id="male" name="gender" value="male">
+                <label for="male">Male</label><br>
+                <input type="radio" id="female" name="gender" value="female">
+                <label for="female">Female</label><br>
+                <input type="radio" id="other" name="gender" value="other">
+                <label for="other">Other</label><br><br>
+
+                <label>Interests:</label><br>
+                <input type="checkbox" id="sports" name="interests" value="sports">
+                <label for="sports">Sports</label><br>
+                <input type="checkbox" id="music" name="interests" value="music">
+                <label for="music">Music</label><br>
+                <input type="checkbox" id="reading" name="interests" value="reading">
+                <label for="reading">Reading</label><br>
+                <input type="checkbox" id="coding" name="interests" value="coding">
+                <label for="coding">Coding</label><br><br>
+
+                <label for="country">Country:</label><br>
+                <select id="country" name="country">
+                    <option value="">--Select Country--</option>
+                    <option value="usa">United States</option>
+                    <option value="uk">United Kingdom</option>
+                    <option value="canada">Canada</option>
+                    <option value="australia">Australia</option>
+                    <option value="nepal">Nepal</option>
+                    <option value="india">India</option>
+                </select><br><br>
+
+                <label for="message">Message:</label><br>
+                <textarea id="message" name="message" rows="5" cols="40"></textarea><br><br>
+
+                <input type="submit" value="Submit">
+                <input type="reset" value="Reset">
+            </form>
+        </section>
+    </main>
+    <footer>
+        <hr>
+        <p><small>&copy; 2024 My Website. All rights reserved.</small></p>
+        <p>Email: <a href="mailto:student@.com">student@gmail.com</a></p>
+    </footer>
+</body>
+</html>
