@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        :root {
+            font-size: 20px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        .cards {}
+
+        .card,
+        .blog {
+            border: 1px solid;
+            padding: 1rem;
+            width: 50%;
+            border-radius: 10px;
+        }
+
+        .card button {
+            padding: .5rem;
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+            margin-left: 100%;
+        }
+
+        .blog button {
+            padding: .5rem;
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+        }
+
+        .box {
+            height: 200px;
+            width: 200px;
+            border: 1px solid
+        }
+
+        .relative {
+            position: relative;
+            left: 50%;
+        }
+
+        .absolute {
+            position: absolute;
+            background-color: antiquewhite;
+            top: 10px;
+            right: 10px;
+        }
+
+        .fixed {
+            position: fixed;
+            background-color: coral;
+            height: 200px;
+            width: 40px;
+            top: 40%;
+            right: 0
+        }
+
+        /*
+
+
+        .sticky {
+            position: sticky
+        } */
+
+
+        .blog {
+            position: relative;
+        }
+
+        .blog button {
+            position: absolute;
+            top: 0;
+            right: 0;
+            display: none;
+        }
+
+        .blog:hover button{
+            display: initial;
+            transition: all 2s linear;
+        }
+
+    </style>
+</head>
+
+<body>
+    <h1>Css Positions</h1>
+    <ol>
+        <li>static</li>
+        <li>realtive</li>
+        <li>absolute</li>
+        <li>fixed</li>
+        <li>sticky</li>
+    </ol>
+    <div class="cards">
+        <div class="card">
+            <button>X</button>
+            <h2>My css</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda dignissimos et illo minus iure
+                cupiditate doloremque atque voluptates, ab eveniet consectetur laboriosam rem aperiam praesentium
+                nostrum saepe nam quibusdam earum?</p>
+        </div>
+    </div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+
+
+    <div class="box relative"> relative</div>
+    <div class="box absolute"> absolute</div>
+    <div class="box fixed"> fixed</div>
+    <div class="box sticky"> sticky</div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+
+    <div class="cards">
+        <div class="blog">
+            <button>X</button>
+            <h2>My css</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda dignissimos et illo minus iure
+                cupiditate doloremque atque voluptates, ab eveniet consectetur laboriosam rem aperiam praesentium
+                nostrum saepe nam quibusdam earum?</p>
+        </div>
+    </div>
+</body>
+
+</html>

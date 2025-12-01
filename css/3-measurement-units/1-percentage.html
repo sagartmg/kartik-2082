@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Percentage Challenge</title>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        label {
+            display: block;
+        }
+
+        .input-field {
+            display: block;
+            padding: 8px;
+            width: 100%
+        }
+
+        .parent {
+            height: 200px;
+            width: 402px;
+            font-size: 0;
+            border: 1px solid;
+        }
+
+        .child {
+            height: 200px;
+            display: inline-block;
+
+        }
+
+        .one {
+            background-color: red;
+            width:100px;
+            width:30%;
+        }
+        .two {
+            background-color: cyan;
+            width:70%
+        }
+
+       
+    </style>
+</head>
+
+<body>
+
+    <div class="parent">
+        <div class="child one">one</div>
+        <div class="child two">two</div>
+    </div>
+
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+
+    <form>
+        <div class="form-group">
+            <label>First Name</label>
+            <input class="input-field" type="text" placeholder="Enter your First Name">
+        </div>
+        <div class="form-group">
+            <label>Middle Name</label>
+            <input class="input-field" type="text" placeholder="Enter your Middle Name">
+        </div>
+        <div class="form-group">
+            <label>Last Name</label>
+            <input class="input-field" type="text" placeholder="Enter your Last Name">
+        </div>
+        <div class="form-group">
+            <label>Address</label>
+            <input class="input-field" type="text" placeholder="Enter your Address">
+        </div>
+
+
+    </form>
+
+
+
+</body>
+
+</html>
