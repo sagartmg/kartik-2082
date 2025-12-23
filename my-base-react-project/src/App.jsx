@@ -1,4 +1,5 @@
 import Home from "./Home";
+import "./App.css";
 
 // export default function App() {
 //   return (
@@ -18,7 +19,6 @@ import Home from "./Home";
 
 // export default App;
 
-
 export const App = () => {
   return (
     <div>
@@ -26,4 +26,3 @@ export const App = () => {
     </div>
   );
 };
-
