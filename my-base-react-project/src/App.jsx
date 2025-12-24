@@ -22,6 +22,7 @@ import "./App.css";
 export const App = () => {
   return (
     <div>
+      {/* routing */}
       <Home />
     </div>
   );

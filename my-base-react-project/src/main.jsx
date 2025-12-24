@@ -7,5 +7,8 @@ createRoot(document.getElementById("root")).render(
   <StrictMode>
     {/* <Application /> */}
     <App/>
+    {/* context  */}
+    {/* redux  */}
+    {/* provider  */}
   </StrictMode>
 );

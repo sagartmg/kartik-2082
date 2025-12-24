@@ -1,3 +1,4 @@
+import CourseItem from "./CourseItem";
 import Header from "./Header";
 
 const Home = () => {
@@ -58,7 +59,7 @@ const Home = () => {
 
   let tags = ["react", "mern", "html", "css", "js"];
 
-  let convertedtags = tags.map((el) => <li>{el}</li>); // [ <li>react</li> <li>mern</li>]
+  let convertedtags = tags.map((el) => <li>#{el}</li>); // [ <li>#react</li> <li>#mern</li>]
   console.log(convertedtags);
 
   return (
@@ -67,39 +68,18 @@ const Home = () => {
       <section>
         <h1>{name}</h1>
         <ul>
-          {tags.map((el) => (
-            <li>{el}</li>
-          ))}
-
           {convertedtags}
-          {/*
-          
-          Instead of this, we can use map function .
-
-          <li>react</li>
-          <li>mern</li>
-          <li>html</li> 
-          
-          */}
+          {tags.map((el) => {
+            return <li>{el}</li>;
+          })}
         </ul>
         <p>{description}</p>
       </section>
       <h2>Courses</h2>
       <ul>
         {courses.map((el) => {
-          return (
-            <li className="course">
-              <img src={el.image}/>
-              <p>{el.name}</p>
-              <p>{el.description}</p>
-              <p>{el.duration}</p>
-              <p>status:{el.status}</p>
-            </li>
-          );
+          return <li>{el.name}</li>;
         })}
-        <li>hml</li>
-        <li>css</li>
-        <li>js</li>
       </ul>
 
       <table>
@@ -109,32 +89,134 @@ const Home = () => {
           <th>Status</th>
         </thead>
         <tbody>
-          {/* <tr>
-            <td>one</td>
-            <td>1 weeks</td>
-            <td>complted</td>
-          </tr>
-          <tr>
-            <td>two</td>
-            <td>1 weeks</td>
-            <td>complted</td>
-          </tr>
-          <tr>
-            <td>three</td>
-            <td>1 weeks</td>
-            <td>complted</td>
-          </tr> */}
           {courses.map((el) => {
             return (
-              <tr>
+              <tr
+                className={`other-class-one ${
+                  el.status ? "success" : "pending"
+                }`}
+              >
                 <td>{el.name}</td>
                 <td>{el.duration}</td>
-                <td>{el.status ? "complted" : "pending" } {true} {false}</td>
+                <td>{el.status ? <span>yes</span> : <span>no</span>}</td>
               </tr>
             );
           })}
         </tbody>
       </table>
+      <br />
+      <br />
+      <div className="courses">
+        {courses.map((el) => {
+          return (
+            <div className="course">
+              <img src={el.image} />
+              <p>{el.name}</p>
+              <p>{el.duration}</p>
+              <p>{el.status ? "yes" : "no"}</p>
+            </div>
+          );
+        })}
+      </div>
+
+      <br />
+      <br />
+      <br />
+      <br />
+
+      {/*
+       <h2>Completed Todos</h2>
+      <div className="courses">
+        {courses.map((el) => {
+          if (el.status) {
+            return (
+              <div className="course">
+                <img src={el.image} />
+                <p>{el.name}</p>
+                <p>{el.duration}</p>
+                <p>
+                  <span className={el.status ? "success" : "pending"}>
+                    {el.status ? "yes" : "no"}
+                  </span>
+                </p>
+                <p>{description}</p>
+              </div>
+            );
+          }
+        })}
+      </div>
+
+      <h2>InCompleted Todos</h2>
+      <div className="courses">
+        {courses.map((el) => {
+          if (!el.status) {
+            return (
+              <div className="course">
+                <img src={el.image} />
+                <p>{el.name}</p>
+                <p>{el.duration}</p>
+                <p>{el.status ? "yes" : "no"}</p>
+                <p>{description}</p>
+              </div>
+            );
+          }
+        })}
+      </div> 
+      */}
+
+      <h2>Completed Todos</h2>
+      <div className="courses">
+        {courses.map((el) => {
+          if (el.status) {
+            // return courseIte(el.name, el.description,)
+            // return <CourseItem name="html" description="html descritpion" status='true'   />;
+            return (
+              <CourseItem
+                name={el.name}
+                description={el.description}
+                status={el.status}
+                image={el.image}
+                duration={el.duration}
+              />
+            );
+          }
+        })}
+      </div>
+
+      <h2>InCompleted Todos</h2>
+      <div className="courses">
+        {courses.map((el) => {
+          if (!el.status) {
+            return (
+              <CourseItem
+                name={el.name}
+                description={el.description}
+                status={el.status}
+                image={el.image}
+                duration={el.duration}
+              />
+            );
+          }
+        })}
+      </div>
+
+      <h2>InCompleted Todos</h2>
+      <div className="courses">
+        {courses
+          .filter((el) => !el.status)
+          .map((el) => <CourseItem
+                name={el.name}
+                description={el.description}
+                status={el.status}
+                image={el.image}
+                duration={el.duration}
+              />
+          )}
+      </div>
+
+      <br />
+      <br />
+      <br />
     </div>
   );
 };
