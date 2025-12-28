@@ -1,20 +1,30 @@
+import { useState } from "react";
+
 export const Tabs = () => {
-  let currentTab = "images";
+  const [currentTab, setCurrentTab] = useState("all");
+
+  // let currentTab = "images";
+  // currentTab = "all";
+  // currentTab = "videos";
 
   return (
     <div className="m-12">
       <ul className="mb-8 flex gap-4 capitalize">
         <li>
-          <a className={currentTab == "all" ? "text-red-500":"" }>all</a>
+          <a className={currentTab == "all" ? "text-red-500" : ""}>all</a>
         </li>
         <li>
-          <a href='#' className={currentTab == "images" ? "text-red-500":"" }>images</a>
+          <a href="#" className={currentTab == "images" ? "text-red-500" : ""}>
+            images
+          </a>
         </li>
         <li>
-          <a>videos</a>
+          <a href="#" className={currentTab == "videos" ? "text-red-500" : ""}>
+            videos
+          </a>
         </li>
       </ul>
-      {  currentTab == "all" && (
+      {currentTab == "all" && (
         <div>
           <h2>All</h2>
           <p>
@@ -37,6 +47,7 @@ export const Tabs = () => {
           </p>
         </div>
       )}
+
       {currentTab == "videos" && (
         <div>
           <h2>Videos</h2>

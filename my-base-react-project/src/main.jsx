@@ -1,14 +1,16 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 // import Application from "./App";
-import {App} from "./App"
+import { App } from "./App";
 
 createRoot(document.getElementById("root")).render(
-  <StrictMode>
+  // <StrictMode>
+  <>
     {/* <Application /> */}
-    <App/>
+    <App />
     {/* context  */}
     {/* redux  */}
     {/* provider  */}
-  </StrictMode>
+  </>
+  // </StrictMode>
 );

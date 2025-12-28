@@ -1,6 +1,7 @@
 import Home from "./Home";
 import "./App.css";
 import { Tabs } from "./Tabs";
+import Counter from "./Counter";
 
 // export default function App() {
 //   return (
@@ -21,11 +22,13 @@ import { Tabs } from "./Tabs";
 // export default App;
 
 export const App = () => {
+  console.log("app render")
   return (
-    <div>
+    <div className="app m-8">
       {/* routing */}
       {/* <Home /> */}
       <Tabs/>
+      <Counter />
     </div>
   );
 };
