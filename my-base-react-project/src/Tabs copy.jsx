@@ -21,29 +21,13 @@ export const Tabs = () => {
     setCurrentTab(tab);
   };
 
-  let tabs = ["all", "images", "videos"];
-
   // re-render on stage changes
   return (
     <div className="m-12">
       <ul className="mb-8 flex gap-4 capitalize">
-        {tabs.map((el) => {
-          return (
-            <li>
-              <a
-                onClick={() => {
-                  setCurrentTab(el);
-                }}
-                className={currentTab == el ? "text-red-500 underline" : ""}
-              >
-                {el}
-              </a>
-            </li>
-          );
-        })}
-
-       {/*  <li>
+        <li>
           <a
+            // onClick={changeTabToAll}
             onClick={() => {
               setCurrentTab("all");
             }}
@@ -54,8 +38,10 @@ export const Tabs = () => {
         </li>
         <li>
           <a
+            // onClick={changeTabToImages}
             onClick={() => {
-              changeTab("images");
+              // setCurrentTab("images");
+              changeTab("images")
             }}
             href="#"
             className={currentTab == "images" ? "text-red-500" : ""}
@@ -71,7 +57,7 @@ export const Tabs = () => {
           >
             videos
           </a>
-        </li> */}
+        </li>
       </ul>
       {currentTab == "all" && (
         <div>
