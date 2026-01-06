@@ -7,6 +7,7 @@ import { Theme } from "./Theme";
 import Header from "./Header";
 import { useContext, useState } from "react";
 import { TodosApi } from "./TodosApi";
+import Products from "./Products";
 // export default function App() {
 //   return (
 //     <div>
@@ -49,14 +50,15 @@ export const App = () => {
     >
       {/* routing */}
       {/* <Home /> */}
-      {/* <Tabs/>
-       */}
+      {/* <Tabs/> */}
+      
       {/* <Todo /> */}
       {/* <Counter /> */}
 
       {/* <Theme theme={theme} changeTheme={changeTheme} /> */}
       <div className="m-8">
-        <TodosApi />
+        {/* <TodosApi /> */}
+        <Products/>
       </div>
     </div>
   );

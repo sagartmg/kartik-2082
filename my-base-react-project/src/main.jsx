@@ -4,13 +4,13 @@ import { createRoot } from "react-dom/client";
 import { App } from "./App";
 
 createRoot(document.getElementById("root")).render(
-  // <StrictMode>
   <>
-    {/* <Application /> */}
-    <App />
-    {/* context  */}
-    {/* redux  */}
-    {/* provider  */}
+    {/* <StrictMode> */}
+      {/* <Application /> */}
+      <App />
+      {/* context  */}
+      {/* redux  */}
+      {/* provider  */}
+    {/* </StrictMode> */}
   </>
-  // </StrictMode>
 );
