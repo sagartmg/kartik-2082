@@ -1,4 +1,4 @@
-import Home from "./Home";
+import Home from "./pages/Home";
 import "./App.css";
 import { Tabs } from "./Tabs";
 import Counter from "./Counter";
@@ -9,22 +9,43 @@ import { useContext, useState } from "react";
 import { TodosApi } from "./TodosApi";
 import Products from "./Products";
 
-import { createBrowserRouter, RouterProvider } from "react-router";
+import {
+  createBrowserRouter,
+  Link,
+  RouterProvider,
+  useLocation,
+} from "react-router";
+
 import RootLayout from "./RootLayout";
+import Todos from "./pages/Todos";
+import ProductView from "./ProductView";
 
 export const App = () => {
   let router = createBrowserRouter([
     {
-      path: "/",
+      path: "",
       Component: RootLayout,
       children: [
         {
           path: "",
-          Component: Products,
+          Component: Home,
         },
         {
           path: "todos",
-          Component: TodosApi,
+          Component: Todos,
+        },
+        {
+          path: "products",
+          children: [
+            {
+              path: "",
+              Component: Products,
+            },
+            {
+              path: ":productId", // slug
+              Component: ProductView,
+            },
+          ],
         },
         {
           path: "counter",
@@ -32,7 +53,6 @@ export const App = () => {
         },
       ],
     },
-    
   ]);
 
   console.log("app render");

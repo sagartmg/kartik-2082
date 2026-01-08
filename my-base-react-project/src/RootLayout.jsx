@@ -1,12 +1,16 @@
 import { Outlet } from "react-router";
 import Header from "./Header";
+import Footer from "./Footer";
 
 const RootLayout = () => {
   return (
     <>
       <Header />
-      <Outlet />
-      <p>footer</p>
+      <div className="min-h-164">
+        <Outlet />
+      </div>
+
+      <Footer />
     </>
   );
 };
