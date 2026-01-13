@@ -1,11 +1,12 @@
 import React from "react";
 import { Link } from "react-router";
 import Button from "./components/Button";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { incrementCartItemsCount } from "./redux/slice/cartSlice";
 
 export default function ProductCard({ product: el }) {
-
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+  const dispatch = useDispatch();
 
   return (
     <li className="border rounded-xl hover:shadow-2xl" key={el.id}>
@@ -20,7 +21,8 @@ export default function ProductCard({ product: el }) {
             e.preventDefault();
 
             if (isLoggedIn) {
-              alert("added to cart");
+              // alert("added to cart");
+              dispatch(incrementCartItemsCount());
             } else {
               alert("please login");
             }

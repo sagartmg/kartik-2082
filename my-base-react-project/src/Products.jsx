@@ -4,7 +4,10 @@ import Button from "./components/Button";
 import { Link } from "react-router";
 import ProductCard from "./ProductCard";
 
-const Products = ({ isLoggedIn }) => {
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+
+
+const Products = ({ isLoggedIn,setCartItemsCount }) => {
   
   const [searchText, setSearchText] = useState("");
   const [products, setProducts] = useState([]);
@@ -56,7 +59,7 @@ const Products = ({ isLoggedIn }) => {
       )}
       <ul className="grid mt-12 gap-4 sm:grid-cols-2  md:grid-cols-3 md:gap-8 lg:grid-cols-4 ">
         {products.map((el) => {
-          return <ProductCard product={el} isLoggedIn={isLoggedIn} />;
+          return <ProductCard setCartItemsCount={setCartItemsCount} product={el} isLoggedIn={isLoggedIn} />;
         })}
       </ul>
     </>

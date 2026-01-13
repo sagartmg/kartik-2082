@@ -6,13 +6,20 @@ import axios from "axios";
 import { useNavigate } from "react-router";
 import { setLogin } from "../redux/slice/userSlice";
 import { useDispatch } from "react-redux";
+import { useForm } from "react-hook-form";
 
 export default function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  //  showPassowrd usestate
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
 
+  console.log({ errors });
   /* 
     CRUD operations
         C - create
@@ -54,15 +61,15 @@ export default function Login() {
         504
   */
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
+  const handleFormSubmit = (data) => {
     axios
       .post(
         "https://dummyjson.com/auth/login",
         {
-          username: "emilys",
-          password: "emilyspass",
+          // username: "emilys",
+          // password: "emilyspass",
+          username: data.email,
+          password: data.password,
           expiresInMins: 30,
         },
         {}
@@ -81,16 +88,34 @@ export default function Login() {
 
   return (
     <div>
-      <form className="flex flex-col items-center" onSubmit={handleSubmit}>
+      <form
+        className="flex flex-col items-center"
+        onSubmit={handleSubmit(handleFormSubmit)}
+      >
         <div className="mb-4">
-          <input placeholder="email" className="border py-4 px-8" />
+          <input
+            placeholder="email"
+            className="border py-4 px-8"
+            {...register("email", { required: true })}
+          />
+          {errors.email && (
+            <span>{errors.email.message || "this field is required"}</span>
+          )}
         </div>
         <div className="mb-4 relative inline-block ">
           <input
             placeholder="password"
             type="text"
-            className="border py-4 px-8"
+            className={`border py-4 px-8 ${
+              errors.password ? "border-red-500" : ""
+            }`}
+            {...register("password", { required: true, minLength: 8 })}
           />
+          {errors.password && (
+            <span>
+              {errors.password.message || "Min 8 characters required."}
+            </span>
+          )}
           <FaRegEye className="absolute right-4 top-4 text-2xl" />
           {/* <FaRegEyeSlash className="absolute right-4 top-4 text-2xl" /> */}
         </div>

@@ -17,17 +17,18 @@ import {
 } from "react-router";
 
 import RootLayout from "./RootLayout";
-import Todos from "./pages/Todos";
 import ProductView from "./ProductView";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Setting from "./pages/Setting";
 import ProtectedRoute from "./ProtectedRoute";
 import axios from "axios";
+import PageNotFound from "./pages/PageNotFound";
 
 export const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [cartItemsCount, setCartItemsCount] = useState(0);
 
   let router = createBrowserRouter([
     {
@@ -56,7 +57,7 @@ export const App = () => {
             {
               path: "",
               // Component: Products,
-              element: <Products isLoggedIn={isLoggedIn} />,
+              element: <Products  setCartItemsCount ={ setCartItemsCount} isLoggedIn={isLoggedIn} />,
             },
             {
               path: ":productId", // slug
@@ -81,6 +82,10 @@ export const App = () => {
               Component: Setting,
             },
           ],
+        },
+        {
+          path: "*",
+          Component: PageNotFound,
         },
       ],
     },
