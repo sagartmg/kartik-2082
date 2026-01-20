@@ -31,7 +31,7 @@ const Products = () => {
         <option value="20">20</option>
       </select>
 
-      {}
+      
       <ul>
         {products.map((el) => {
           return <li>{el.title}</li>;
