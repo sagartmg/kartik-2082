@@ -1,17 +1,28 @@
 const express = require("express");
 const router = express.Router();
 
-let maxId = 2;
+let maxId = 3;
 let todos = [
   {
     id: 1,
     title: "html",
     status: true,
+    created_by: "ram",
+    completed_at: "2026-13-1",
   },
   {
     id: 2,
-    title: "css",
+    name: "css",
+    status: 1,
+    created_by: {
+        name:"ram"
+    }
+  },
+  {
+    id: 3,
+    title: "react",
     status: true,
+    created_by:1
   },
 ];
 
@@ -27,8 +38,8 @@ router.post("/api/todos", (req, res) => {
   });
 
   res.send("todos created");
-  
-    /* 
+
+  /* 
     json vs javascript object
 
         res.send({
@@ -43,13 +54,11 @@ router.post("/api/todos", (req, res) => {
 router.put("/api/todos/:id", (req, res) => {
   console.log(req.params.id);
   res.send("todos updated");
-
 });
 
 router.delete("/api/todos/:id", (req, res) => {
   console.log(req.params.id);
   res.send("todos deleted");
-
 });
 
 // default export

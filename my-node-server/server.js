@@ -1,11 +1,80 @@
 const express = require("express");
 // import express from "express"
 const cors = require("cors");
+const { Sequelize, DataTypes } = require("sequelize");
 
 const { checkAuthentication } = require("./middlewares/auth");
 const { checkIsBuyer } = require("./middlewares/role");
 const productRoute = require("./routes/product");
 const todosRoute = require("./routes/todo");
+
+const sequelize = new Sequelize(
+  "postgres://postgres:postgres@localhost:5436/postgres",
+);
+
+const checkDBconnection = async () => {
+  try {
+    await sequelize.authenticate();
+    sequelize.sync({});
+    // sequelize.sync({force:true});
+    console.log("Connection has been established successfully.");
+  } catch (error) {
+    console.error("Unable to connect to the database:", error);
+  }
+};
+
+checkDBconnection();
+
+const User = sequelize.define(
+  "User",
+  {
+    id: {
+      type: DataTypes.BIGINT,
+      primaryKey: true,
+      autoIncrement: true,
+      allowNull: false,
+    },
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+  },
+  {
+    timestamps: true,
+    underscored: true,
+    tableName: "users",
+  },
+);
+
+const Todo = sequelize.define(
+  "Todo",
+  {
+    id: {
+      type: DataTypes.BIGINT,
+      primaryKey: true,
+      autoIncrement: true,
+      allowNull: false,
+    },
+    title: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    description: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    status: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+      allowNull: false,
+    },
+  },
+  {
+    timestamps: true,
+    underscored: true,
+    tableName: "todos",
+  },
+);
 
 const app = express();
 const PORT = 3000;
@@ -74,8 +143,18 @@ app.use(todosRoute);
         504
   */
 
-app.get("/", (req, res) => {
-  res.send("welcome to node-api");
+app.get("/api/users", async (req, res) => {
+  let users = await User.findAll();
+  res.send(users);
+});
+
+app.post("/api/users", async (req, res) => {
+  // req.body.name
+  let user = await User.create({
+    name: req.body.name,
+  });
+
+  res.send(user);
 });
 
 app.post("/api/carts", checkAuthentication, checkIsBuyer, (req, res) => {
