@@ -54,10 +54,9 @@ const Products = ({ isLoggedIn,setCartItemsCount }) => {
         <option value="15">15</option>
         <option value="20">20</option>
       </select>
-      {isLoading && (
-        <p className="h-56 flex justify-center items-center">is loading.....</p>
-      )}
-      <ul className="grid mt-12 gap-4 sm:grid-cols-2  md:grid-cols-3 md:gap-8 lg:grid-cols-4 ">
+
+      
+      <ul>
         {products.map((el) => {
           return <ProductCard setCartItemsCount={setCartItemsCount} product={el} isLoggedIn={isLoggedIn} />;
         })}
