@@ -1,13 +1,22 @@
 import express from "express";
 import appRoutes from "./routes";
 import "./connections/database";
+// import "./index";
+
+import resourceNotFoundHandler from "./middlewares/resourceNotFoundHandler";
+import errorHandler from "./middlewares/errorHandler";
 
 const app = express();
+app.use(express.json()); // global middleware
+
 app.use("/api", appRoutes);
 
 app.get("/", (req, res) => {
   res.send("welcome");
 });
+
+app.use(resourceNotFoundHandler);
+app.use(errorHandler);
 
 app.listen(3000, () => {
   console.log("server started");

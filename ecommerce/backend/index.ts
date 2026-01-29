@@ -61,3 +61,26 @@ brand = {
   name: "samsung",
 };
 
+console.log(brand);
+
+
+let price:number = 1000 
+// price.
+
+
+let number:any
+number = 12;
+number.vlau;
+
+// number.
+
+
+let count:unknown
+count = 12
+count = "twelve"
+// count.adfsa
+
+if( typeof count == "number"){
+  count.asdfadsf
+}
+

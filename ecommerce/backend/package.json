@@ -3,11 +3,13 @@
     "dev": "nodemon ./server.ts"
   },
   "devDependencies": {
+    "@types/bcrypt": "^6.0.0",
     "@types/express": "^5.0.6",
     "@types/node": "^25.0.10",
     "typescript": "^5.9.3"
   },
   "dependencies": {
+    "bcrypt": "^6.0.0",
     "express": "^5.2.1",
     "pg": "^8.17.2",
     "pg-hstore": "^2.3.4",

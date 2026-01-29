@@ -23,12 +23,21 @@ const User = sequelize.define(
       values: [SELLER, BUYER],
       allowNull: false,
     },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     // TODO: add password field
   },
   {
     tableName: "users",
     underscored: true,
     timestamps: true,
+    // defaultScope: {
+    //   attributes: {
+    //     exclude: ["password"],
+    //   },
+    // },
   },
 );
 
