@@ -70,7 +70,7 @@ let price:number = 1000
 
 let number:any
 number = 12;
-number.vlau;
+number.vlaue.anothervalue;
 
 // number.
 
@@ -81,6 +81,6 @@ count = "twelve"
 // count.adfsa
 
 if( typeof count == "number"){
-  count.asdfadsf
+  count.toPrecision
 }
 

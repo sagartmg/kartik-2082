@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from "express";
+import { JsonWebTokenError } from "jsonwebtoken";
 import {
   ConnectionError,
   DatabaseError,
@@ -8,7 +9,7 @@ import {
 } from "sequelize";
 
 function errorHandler(
-  //   err: any,
+  // err: any,
   err: unknown,
   _req: Request,
   res: Response,
@@ -33,12 +34,20 @@ function errorHandler(
       msg: err.message,
     });
   }
+
   if (err instanceof ConnectionError || err instanceof TimeoutError) {
     return res.status(503).send({
       msg: err.message,
     });
   }
 
+  if (err instanceof JsonWebTokenError) {
+    return res.status(401).send({
+      msg: "Invalid Credentails",
+    });
+  }
+
+  console.log(err);
   res.status(500).send({
     msg: "SERVER error",
   });

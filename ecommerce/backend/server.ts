@@ -1,3 +1,4 @@
+import 'dotenv/config'
 import express from "express";
 import appRoutes from "./routes";
 import "./connections/database";
@@ -8,6 +9,7 @@ import errorHandler from "./middlewares/errorHandler";
 
 const app = express();
 app.use(express.json()); // global middleware
+// cors
 
 app.use("/api", appRoutes);
 

@@ -1,7 +1,8 @@
 import { Request } from "express";
-import User from "../models/User";
-
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+
+import User from "../models/User";
 
 export default {
   signup: async (req: Request) => {
@@ -18,6 +19,7 @@ export default {
     //  check if email exits
     //  fetch its hashed pass
     //  compare password
+    // SELECT * from users where email= 'testing@testing.com' LIIMIT 1
     let user = await User.findOne({
       where: {
         email: req.body.email,
@@ -25,17 +27,40 @@ export default {
     });
 
     if (user) {
-      console.log(user);
-      let pw = user.getDataValue("password")
+      // console.log(user);
+      // console.log(user.password);
+      // let hased_pw = user.getDataValue("password");
 
-      let userData = user.toJSON()
-      console.log(userData.password);
+      let userData = user.toJSON();
 
+      // console.log(userData);
 
-      // comparey hashed password with req.body.password
-      // also send jwt token ..  npm i jsonwebtoken
+      let passwordMatched = await bcrypt.compare(
+        req.body.password,
+        userData.password,
+      );
+      if (!passwordMatched) {
+        return false;
+      }
 
-      return true;
+      delete userData.password;
+      delete userData.createdAt;
+      delete userData.updatedAt;
+
+      if (process.env.JWT_SECRET) {
+        let token = jwt.sign(userData, process.env.JWT_SECRET,{
+          expiresIn:"7d"
+        });
+        console.log(token);
+
+        // comparey hashed password with req.body.password
+        // also send jwt token ..  npm i jsonwebtoken
+
+        return {
+          ...userData,
+          token,
+        };
+      }
     }
 
     return false;

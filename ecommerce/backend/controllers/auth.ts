@@ -14,12 +14,10 @@ const authController = {
   },
   login: async (req: Request, res: Response, next: NextFunction) => {
     try {
-      let matched = await authService.login(req);
+      let user = await authService.login(req);
 
-      if (matched) {
-        res.send({
-          msg: "login successfull",
-        });
+      if (user) {
+        res.send(user);
       } else {
         res.status(401).send({
           msg: "invalid createndatinsl",
