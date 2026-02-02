@@ -6,7 +6,7 @@ function Header() {
   return (
     <>
       <div className="bg-[#7E33E0] py-3.25">
-        <div className="track container flex flex-col justify-between text-white md:flex-row">
+        <div className="container flex flex-col justify-between text-white md:flex-row">
           <div className="flex justify-between gap-2">
             <div className="flex">
               <Mail className="hidden" />
