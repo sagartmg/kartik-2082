@@ -5,6 +5,17 @@ import jwt from "jsonwebtoken";
 import User from "../models/User";
 
 export default {
+  getUser: async (req: Request) => {
+    
+    // let hashed = await bcrypt.hash(req.body.password, 10);
+    // return await User.create({
+    //   firstName: req.body.firstName,
+    //   lastName: req.body.lastName,
+    //   email: req.body.email,
+    //   role: req.body.role,
+    //   password: hashed,
+    // });
+  },
   signup: async (req: Request) => {
     let hashed = await bcrypt.hash(req.body.password, 10);
     return await User.create({

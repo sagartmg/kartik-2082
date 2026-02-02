@@ -1,19 +1,19 @@
-import 'dotenv/config'
-import express from "express";
+import "dotenv/config";
+import express, { Response } from "express";
+import cors from "cors";
+
 import appRoutes from "./routes";
 import "./connections/database";
-// import "./index";
-
 import resourceNotFoundHandler from "./middlewares/resourceNotFoundHandler";
 import errorHandler from "./middlewares/errorHandler";
 
 const app = express();
+app.use(cors());
 app.use(express.json()); // global middleware
-// cors
 
 app.use("/api", appRoutes);
 
-app.get("/", (req, res) => {
+app.get("/", (req, res: Response) => {
   res.send("welcome");
 });
 
