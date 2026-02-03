@@ -4,6 +4,7 @@ import Login from "../pages/Login";
 import RootLayout from "../components/layout/RootLayout";
 import NotFount from "../pages/NotFount";
 import ProtectedRoute from "../components/ProtectedRoute";
+import Dashboard from "../pages/seller/Dashboard";
 
 const router = createBrowserRouter([
   {
@@ -16,8 +17,7 @@ const router = createBrowserRouter([
         path: "/seller",
         Component: ProtectedRoute,
         children: [
-            { path: "products", Component: Login },
-            { path: "orders", Component: Login }
+            { path: "dashboard", Component: Dashboard },
         ],
       },
       { path: "*", Component: NotFount },

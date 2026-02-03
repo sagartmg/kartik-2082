@@ -1,16 +1,14 @@
 import axios from "axios";
 import BreadCrumb from "../components/BreadCrumb";
 import type { FormEvent } from "react";
+import { useNavigate } from "react-router";
+import notify from "../helpers/notify";
+import { login } from "../redux/slice/userSlice";
+import { useDispatch } from "react-redux";
 
 export default function LoginPage() {
-  // const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-  //   e.preventDefault();
-  //   if (e.target) {
-  //     axios.post("http://localhost:3000/api/auth/login", {
-  //       email: e.target.email.value,
-  //     });
-  //   }
-  // };
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     console.log("here");
@@ -26,7 +24,13 @@ export default function LoginPage() {
       })
       .then((res) => {
         console.log(res.data);
-        localStorage.setItem("accessToken",res.data.token)
+        dispatch(login(res.data));
+        localStorage.setItem("accessToken", res.data.token);
+        notify.success("login successful");
+        // navigate("/");
+      })
+      .catch((err) => {
+        notify.error(err.response.data.msg);
       });
   };
 

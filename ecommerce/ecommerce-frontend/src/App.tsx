@@ -1,15 +1,18 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Route from "./routes/Index";
 import axios from "axios";
+import { ToastContainer } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { login } from "./redux/slice/userSlice";
 
 function App() {
-  useEffect(() => {
-    // login
-    // sigup
-    // axios.get("backend/api/auth/me") send jwt token along witht he request
-    // setu up user in redux
+  const [isLoading, setIsLoading] = useState(true);
+  const dispatch = useDispatch();
 
+  useEffect(() => {
     let token = localStorage.getItem("accessToken");
+    
+
     axios
       .get("http://localhost:3000/api/auth/me", {
         headers: {
@@ -17,14 +20,26 @@ function App() {
         },
       })
       .then((res) => {
-        //
-        // set up user data in redux
+        dispatch(login(res.data.data));
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        setIsLoading(false);
       });
   }, []);
 
   return (
     <>
-      <Route />
+      {isLoading ? (
+        <div className="flex h-screen items-center justify-center">
+          <p className="text-3xl">Loading: .......</p>
+        </div>
+      ) : (
+        <>
+          <Route />
+          <ToastContainer />
+        </>
+      )}
     </>
   );
 }

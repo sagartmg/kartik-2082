@@ -70,6 +70,9 @@ function Navbar() {
           <li>
             <Link to="/products">Products</Link>
           </li>
+          <li>
+            <Link to="/seller/dashboard">Dashboard</Link>
+          </li>
         </ul>
         <form>
           <div className="flex">
