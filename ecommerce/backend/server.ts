@@ -4,6 +4,8 @@ import cors from "cors";
 
 import appRoutes from "./routes";
 import "./connections/database";
+import "./models/index";
+
 import resourceNotFoundHandler from "./middlewares/resourceNotFoundHandler";
 import errorHandler from "./middlewares/errorHandler";
 
@@ -23,3 +25,5 @@ app.use(errorHandler);
 app.listen(3000, () => {
   console.log("server started");
 });
+
+// User.has
