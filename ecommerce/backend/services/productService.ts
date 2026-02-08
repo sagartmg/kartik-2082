@@ -4,11 +4,43 @@ import User from "../models/User";
 import Category from "../models/Category";
 import { Op } from "sequelize";
 
+import fs from "fs";
+import path from "path";
+import ProductImage from "../models/ProductImage";
+
 const productService = {
   get: async (req: Request) => {
-    let searchText: string = (req.query.q as string).trim() || "";
+    let searchText: string = (req.query.q as string)?.trim() || "";
+    let priceFrom: number = (req.query.priceFrom as unknown as number) || 0;
+    let priceTo: number =
+      (req.query.priceTo as unknown as number) || 9999999999999;
+    let page: number = (req.query.page as unknown as number) || 1;
+    let limit: number = (req.query.limit as unknown as number) || 10;
 
-    return await Product.findAll({
+    let offset = (page - 1) * limit;
+
+    let order: [string, string] = ["title", "ASC"];
+
+    let sortBy: string = req.query.sort as string;
+    console.log({ sortBy });
+
+    switch (sortBy) {
+      case "priceAsc": {
+        order = ["price", "ASC"];
+        break;
+      }
+      case "priceDesc": {
+        order = ["price", "DESC"];
+        break;
+      }
+      case "createdAtDesc": {
+        order = ["createdAt", "DESC"];
+        break;
+      }
+    }
+
+    console.log(order);
+    return await Product.findAndCountAll({
       include: [
         {
           model: User,
@@ -20,6 +52,11 @@ const productService = {
           as: "categories",
           attributes: ["id", "title"],
         },
+        {
+          model: ProductImage,
+          as: "images",
+          attributes: ["path"],
+        },
       ],
       attributes: {
         exclude: ["userId", "updatedAt"],
@@ -30,10 +67,13 @@ const productService = {
           [Op.iLike]: `%${searchText}%`,
         },
         price: {
-          [Op.gte]: 0,
-          [Op.lte]: 150,
+          [Op.gte]: priceFrom,
+          [Op.lte]: priceTo,
         },
       },
+      limit: limit,
+      offset: offset,
+      order: [order],
     });
   },
   getSellerProducts: async (req: Request) => {
@@ -56,6 +96,23 @@ const productService = {
 
     //  @ts-ignore
     await product.addCategories(req.body.categoryIds);
+
+    const files = req.files as Express.Multer.File[];
+    console.log(files);
+
+    files?.forEach((file) => {
+      // console.log(file.mimetype);
+      // @ts-ignore
+      const uniqueSuffix = ate.now() + "-" + Math.round(Math.random() * 1e9);
+      let pathname = path.join("uploads", uniqueSuffix + file.originalname);
+      console.log(pathname);
+      fs.writeFileSync(pathname, file.buffer);
+
+      ProductImage.create({
+        productId: product.getDataValue("id"),
+        path: pathname,
+      });
+    });
 
     return product;
   },

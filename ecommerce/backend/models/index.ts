@@ -1,6 +1,7 @@
 import Category from "./Category";
 import Product from "./Product";
 import ProductCategory from "./ProductCategory";
+import ProductImage from "./ProductImage";
 import User from "./User";
 
 //  one to many relationship
@@ -29,4 +30,9 @@ Category.belongsToMany(Product, {
   as: "products",
   foreignKey: "categoryId",
   otherKey: "productId",
+});
+
+Product.hasMany(ProductImage, {
+  foreignKey: "productId",
+  as: "images",
 });
