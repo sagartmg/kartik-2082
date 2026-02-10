@@ -6,7 +6,7 @@ export const checkAuthentication = (req: Request, res: Response, next: any) => {
 
   if (req.headers.authorization) {
     let token = req.headers.authorization.split(" ")[1];
-    console.log(token);
+    // console.log(token);
 
     if (token) {
       if (process.env.JWT_SECRET) {

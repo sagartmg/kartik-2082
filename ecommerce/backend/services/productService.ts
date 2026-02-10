@@ -7,6 +7,7 @@ import { Op } from "sequelize";
 import fs from "fs";
 import path from "path";
 import ProductImage from "../models/ProductImage";
+import sequelize from "../connections/database";
 
 const productService = {
   get: async (req: Request) => {
@@ -83,7 +84,7 @@ const productService = {
     //   where:{
     //     id: 26
     //   },
-    let id = req.params.id as unknown as number ;
+    let id = req.params.id as unknown as number;
 
     return await Product.findByPk(id, {
       include: [
@@ -119,34 +120,56 @@ const productService = {
   create: async (req: Request) => {
     console.log(req.body.categoryIds);
 
-    let product = await Product.create({
-      title: req.body.title,
-      price: req.body.price,
-      userId: req.user?.id,
-      stock: req.body.stock,
+    return await sequelize.transaction(async (t) => {
+      let product = await Product.create(
+        {
+          title: req.body.title,
+          price: req.body.price,
+          userId: req.user?.id,
+          stock: req.body.stock,
+        },
+        { transaction: t },
+      );
+
+      //  @ts-ignore
+      await product.addCategories(req.body.categoryIds, { transaction: t });
+
+      const files = req.files as Express.Multer.File[];
+      // console.log(files);
+
+      // files?.forEach( async (file) => {
+      //   const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
+      //   let pathname = path.join("uploads", uniqueSuffix + file.originalname);
+      //   console.log(pathname);
+      //   fs.writeFileSync(pathname, file.buffer);
+
+      //   await  ProductImage.create({
+      //     productId: product.getDataValue("id"),
+      //     path: pathname,
+      //   }, { transaction: t },);
+      //   console.log("product image tagged")
+      // });
+
+      for (const file of files) {
+        const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
+        let pathname = path.join("uploads", uniqueSuffix + file.originalname);
+        console.log(pathname);
+        fs.writeFileSync(pathname, file.buffer);
+
+        await ProductImage.create(
+          {
+            productId: product.getDataValue("id"),
+            path: pathname,
+          },
+          { transaction: t },
+        );
+        console.log("product image tagged");
+      }
+
+      console.log("return product");
+
+      return product;
     });
-
-    //  @ts-ignore
-    await product.addCategories(req.body.categoryIds);
-
-    const files = req.files as Express.Multer.File[];
-    console.log(files);
-
-    files?.forEach((file) => {
-      // console.log(file.mimetype);
-      // @ts-ignore
-      const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
-      let pathname = path.join("uploads", uniqueSuffix + file.originalname);
-      console.log(pathname);
-      fs.writeFileSync(pathname, file.buffer);
-
-      ProductImage.create({
-        productId: product.getDataValue("id"),
-        path: pathname,
-      });
-    });
-
-    return product;
   },
 };
 
