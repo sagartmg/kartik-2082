@@ -1,16 +1,16 @@
 import api from "./axios";
 
-const cartApi = {
+const orderApi = {
   get: () => {
     return api.get("/carts");
   },
-  create: (payload: { productId: number }) => {
-    return api.post("/carts", payload);
+  create: (payload: {}) => {
+    return api.post("/orders", payload);
   },
   update: (cartId: number, quantity: number) => {
     return api.put(`/carts/${cartId}`, { quantity });
   },
-  delete: (cartId:number) => {
+  delete: (cartId: number) => {
     return api.delete(`/carts/${cartId}`);
   },
   //   create: (data: { productId: number }) => {
@@ -24,4 +24,4 @@ export const getCartItems = () => {
   return api.get("/carts");
 };
 
-export default cartApi;
+export default orderApi;

@@ -10,6 +10,11 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
+
+    
+    axios.get("http://localhost:8000/api/packages")
+
+
     let token = localStorage.getItem("accessToken");
     
 

@@ -11,6 +11,7 @@ import SellerProducts from "../pages/seller/Products";
 import ProductDetail from "../pages/ProductDetail";
 import CreateProduct from "../pages/seller/CreateProduct";
 import Cart from "../pages/Cart";
+import Checkout from "../pages/Checkout";
 
 const router = createBrowserRouter([
   {
@@ -30,7 +31,10 @@ const router = createBrowserRouter([
 
       {
         Component: ProtectedRoute,
-        children: [{ path: "/cart", Component: Cart }],
+        children: [
+          { path: "/cart", Component: Cart },
+          { path: "/checkout", Component: Checkout }
+        ],
       },
 
       {
