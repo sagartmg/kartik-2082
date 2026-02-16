@@ -1,8 +1,10 @@
 import { Sequelize } from "sequelize";
+import pg from "pg";  // <- explicitly import
 const sequelize = new Sequelize(
   "postgres://postgres:postgres@localhost:5436/postgres",
   {
     logging: false,
+     dialectModule: pg,    // <- this fixes Vercel crashes
   },
 );
 
