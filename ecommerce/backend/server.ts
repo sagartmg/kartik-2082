@@ -24,8 +24,9 @@ app.get("/", (req, res: Response) => {
 app.use(resourceNotFoundHandler);
 app.use(errorHandler);
 
-app.listen(3000, () => {
-  console.log("server started");
-});
+// app.listen(3000, () => {
+//   console.log("server started");
+// });
 
 // User.has
+export default app
