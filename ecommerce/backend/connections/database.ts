@@ -2,7 +2,7 @@ import { Sequelize } from "sequelize";
 import pg from "pg";  // <- explicitly import
 // import { PostgresDialect } from '@sequelize/postgres';
 const sequelize = new Sequelize(
-  "postgres://postgres:postgres@localhost:5436/postgres",
+  "postgresql://neondb_owner:npg_4DOdfnr7shBV@ep-raspy-paper-ai12ra4g-pooler.c-4.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require",
   {
     // dialect: PostgresDialect,
     logging: false,
